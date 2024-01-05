@@ -1,0 +1,96 @@
+<mvc:View
+	controllerName="cdb.codigodebarra.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" >
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="FormToolbar"
+			editable="true"
+			ariaLabelledBy="Title1">
+			<f:toolbar>
+				<Toolbar id="TB1">
+					<Title id="Title1" text="Re-impressão de ticket de estacionamento loja 20"/>
+				</Toolbar>
+			</f:toolbar>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer ariaLabelledBy="Title2">
+					<f:formElements>
+						<f:FormElement label="Placa">
+							<f:fields>
+								<Input value="{placa}" id="placa"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="Ticket">
+							<f:fields>
+								<Input value="{Ticket}" id="ticket"
+                                editable="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Data/Hora de entrada">
+							<f:fields>
+								<Input value="{Data}"
+                                editable="false" />
+								<Input value="{Hora}"
+                                editable="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M3 S4" />
+									</layoutData>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Setor/Placa">
+							<f:fields>
+                                <Input value="{setor}"
+                                editable="false" />
+								<Input value="{placa}"
+                                editable="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M3 S4" />
+									</layoutData>
+								</Input>
+								
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer ariaLabelledBy="Title3">
+					<f:toolbar>
+						<Toolbar>						
+						<ToolbarSpacer />
+                            <Button text="Imprimir" type="Accept" press="onPrint"/>
+                            <Button text="Cancelar" type="Reject" />
+						</Toolbar>
+					</f:toolbar>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+
+
+    <VBox id="qrcode">
+    
+    <Image class="barcode" />
+    <Label id="_IDGenLabel4" text="Ticket"/><Text id="ticketlabel"  text="281889509137"/>
+    <Label id="_IDGenLabel5" text="Data"/><Text id="centro" text="05/01/2024"/>
+    <Label id="_IDGenLabel6" text="Hora"/><Text id="hora" text="17:34"/>
+    
+    </VBox>
+</mvc:View>

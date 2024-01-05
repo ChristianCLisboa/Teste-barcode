@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZAFEST.GW_FAIXAS_ABONO_SRV" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Adiantamento" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Centro"/>
+                    <PropertyRef Name="Minutos"/>
+                </Key>
+                <Property Name="Centro" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Minutos" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="minutos de abono" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Abono" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Centro"/>
+                </Key>
+                <Property Name="Centro" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValorMinimo" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="2" sap:unicode="false" sap:label="Valor minimo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PagamentoFatura" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Pagamento de fatura" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TicketPerdCar" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="2" sap:unicode="false" sap:label="perda de ticket car" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TicketPerdMot" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="2" sap:unicode="false" sap:label="perda de ticket mot" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Faixa" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Centro"/>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Minutos"/>
+                </Key>
+                <Property Name="Centro" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Minutos" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="minutos de abono" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValInicial" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="2" sap:unicode="false" sap:label="Valor inicial" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValFinal" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="2" sap:unicode="false" sap:label="Valor final" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZAFEST_GW_FAIXAS_ABONO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="AdiantamentoSet" EntityType="ZAFEST.GW_FAIXAS_ABONO_SRV.Adiantamento" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AbonoSet" EntityType="ZAFEST.GW_FAIXAS_ABONO_SRV.Abono" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FaixaSet" EntityType="ZAFEST.GW_FAIXAS_ABONO_SRV.Faixa" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <FunctionImport Name="DeleteFaixa" ReturnType="ZAFEST.GW_FAIXAS_ABONO_SRV.Faixa" EntitySet="FaixaSet" m:HttpMethod="GET" sap:action-for="ZAFEST.GW_FAIXAS_ABONO_SRV.Faixa">
+                    <Parameter Name="Id" Type="Edm.String" Mode="In" MaxLength="1"/>
+                    <Parameter Name="Minutos" Type="Edm.Byte" Mode="In" sap:label="int"/>
+                    <Parameter Name="Centro" Type="Edm.String" Mode="In" MaxLength="4"/>
+                </FunctionImport>
+                <FunctionImport Name="DeleteAdiant" ReturnType="ZAFEST.GW_FAIXAS_ABONO_SRV.Adiantamento" EntitySet="AdiantamentoSet" m:HttpMethod="GET" sap:action-for="ZAFEST.GW_FAIXAS_ABONO_SRV.Adiantamento">
+                    <Parameter Name="Minutos" Type="Edm.Byte" Mode="In" sap:label="int"/>
+                    <Parameter Name="Centro" Type="Edm.String" Mode="In" MaxLength="4"/>
+                </FunctionImport>
+                <FunctionImport Name="DeleteAbono" ReturnType="ZAFEST.GW_FAIXAS_ABONO_SRV.Abono" EntitySet="AbonoSet" m:HttpMethod="GET" sap:action-for="ZAFEST.GW_FAIXAS_ABONO_SRV.Abono">
+                    <Parameter Name="Centro" Type="Edm.String" Mode="In" MaxLength="4"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://savadfo1.ciazaffari.com.br:50000/sap/opu/odata/ZAFEST/GW_FAIXAS_ABONO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://savadfo1.ciazaffari.com.br:50000/sap/opu/odata/ZAFEST/GW_FAIXAS_ABONO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
